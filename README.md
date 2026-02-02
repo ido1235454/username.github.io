@@ -1,12 +1,1 @@
 # username.github.io
-<!DOCTYPE html>
-<html lang="he">
-<head>
-  <meta charset="UTF-8">
-  <title>האתר של עידו</title>
-</head>
-<body>
-  <h1>ברוך הבא לאתר שלי 😎</h1>
-  <p>האתר הראשון שלי ב-GitHub Pages</p>
-</body>
-</html>
