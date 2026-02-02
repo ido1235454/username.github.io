@@ -110,17 +110,17 @@
       // כל לחיצה מקטינה עוד קצת את כפתור ה"לא"
       noScale *= 0.8;
       noBtn.style.transform = `scale(${noScale})`;
-      message.textContent = "כדאי לך 😉";
+      message.textContent = "כדאי לך";
 
       // כשהכפתור נהיה ממש קטן – נעלים אותו
       if (noScale < 0.35) {
         noBtn.style.display = "none";
-        message.textContent = "ידעתי שתישאר רק כן 😏";
+        message.textContent = "אז מה את אומרת";
       }
     });
 
     yesBtn.addEventListener("click", () => {
-      message.textContent = "יייי! ידעתי שתגידי כן 💘";
+      message.textContent = "יופי קטקט";
     });
   </script>
 </body>
