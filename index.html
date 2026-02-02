@@ -2,37 +2,45 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ולנטיין 💗</title>
 
+  <!-- Rubik – תומך עברית -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     body {
+      margin: 0;
       font-family: "Rubik", sans-serif;
       background: #ffc0cb;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
       text-align: center;
-      margin: 0;
     }
 
     .screen {
       width: 100%;
-      max-width: 400px;
-      padding: 24px;
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 24px;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
 
     .buttons {
       position: relative;
-      height: 80px;
+      height: 90px;
+      margin-top: 10px;
     }
 
     button {
@@ -45,6 +53,8 @@
       border: none;
       cursor: pointer;
       font-family: "Rubik", sans-serif;
+      transition: transform 0.25s ease;
+      white-space: nowrap;
     }
 
     #yesBtn {
@@ -64,19 +74,15 @@
     .hidden {
       display: none;
     }
-
-    img {
-      max-width: 100%;
-      border-radius: 16px;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
 
-<!-- מסך שאלה -->
-<div class="screen" id="question">
-  <h1>נביז תרצי להיות הולנטיין שלי?</h1>
+<!-- מסך ראשון -->
+<div class="screen" id="questionScreen">
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXl2eDQ5MG16ZXY0NGV1YjM3bmoweGllbXZkOWUwYWRjdm1ia3VqbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uv0VSp6Eqlu1nGvkZ0/giphy.gif" alt="gif">
+
+  <h1>נביז רוצה להיות איתי וולנטיין?</h1>
 
   <div class="buttons">
     <button id="yesBtn">כן</button>
@@ -84,32 +90,41 @@
   </div>
 </div>
 
-<!-- מסך חגיגה -->
-<div class="screen hidden" id="celebrate">
-  <h1>יששש! 🎉💘</h1>
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<!-- מסך שני -->
+<div class="screen hidden" id="finalScreen">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm1iNTU4NXNmaHhldzVjcWFmdTh1YzNkeDIwd2Z0bG80OGI0ZHV6bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wsJHi6a1JwoXC/giphy.gif" alt="celebrate">
+  <h1>ניפגש!! 💘</h1>
 </div>
 
 <script>
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
-  const question = document.getElementById("question");
-  const celebrate = document.getElementById("celebrate");
+  const questionScreen = document.getElementById("questionScreen");
+  const finalScreen = document.getElementById("finalScreen");
 
   let scale = 1;
+  let clickCount = 0;
+
+  const noTexts = ["כדאי לך", "בטוח?", "אין דבר כזה!"];
 
   noBtn.addEventListener("click", () => {
-    scale += 0.4;
+    scale += 0.35;
     yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
 
-    if (scale > 2.2) {
+    if (clickCount < noTexts.length) {
+      noBtn.textContent = noTexts[clickCount];
+    }
+
+    if (scale >= 2.4) {
       noBtn.style.display = "none";
     }
+
+    clickCount++;
   });
 
   yesBtn.addEventListener("click", () => {
-    question.classList.add("hidden");
-    celebrate.classList.remove("hidden");
+    questionScreen.classList.add("hidden");
+    finalScreen.classList.remove("hidden");
   });
 </script>
 
