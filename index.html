@@ -1,11 +1,127 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>האתר של עידו</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>נביז הולנטיין 💗</title>
+
+  <!-- פונ्ट Rubik עם תמיכה בעברית -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffc0cb; /* ורוד */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      padding: 24px;
+      max-width: 480px;
+    }
+
+    h1 {
+      font-size: 2rem; /* כותרת בגודל יפה לטלפון */
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    button {
+      font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 1.2rem;
+      padding: 10px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4f8b;
+      color: #fff;
+    }
+
+    #yesBtn:hover {
+      background-color: #ff2b72;
+      transform: scale(1.05);
+    }
+
+    #noBtn {
+      background-color: #ffffff;
+      color: #ff4f8b;
+      border: 2px solid #ff4f8b;
+    }
+
+    #noBtn:active {
+      transform: scale(0.95);
+    }
+
+    .message {
+      margin-top: 18px;
+      font-size: 1rem;
+      min-height: 1.2em;
+    }
+
+    .heart {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎉 זה עובד!</h1>
-  <p>האתר הראשון שלי ב-GitHub Pages</p>
+  <div class="container">
+    <div class="heart">💗</div>
+    <h1>נביז תרצי להיות הולנטיין שלי?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">כן</button>
+      <button id="noBtn">לא</button>
+    </div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+
+    let noScale = 1;
+
+    noBtn.addEventListener("click", () => {
+      // כל לחיצה מקטינה עוד קצת את כפתור ה"לא"
+      noScale *= 0.8;
+      noBtn.style.transform = `scale(${noScale})`;
+      message.textContent = "כדאי לך 😉";
+
+      // כשהכפתור נהיה ממש קטן – נעלים אותו
+      if (noScale < 0.35) {
+        noBtn.style.display = "none";
+        message.textContent = "ידעתי שתישאר רק כן 😏";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.textContent = "יייי! ידעתי שתגידי כן 💘";
+    });
+  </script>
 </body>
 </html>
