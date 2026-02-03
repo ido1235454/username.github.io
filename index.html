@@ -2,10 +2,124 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>טסט – האתר עובד</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ולנטיין 💗</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Rubik", sans-serif;
+      background: #ffc0cb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .screen {
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+    }
+
+    button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: "Rubik", sans-serif;
+      transition: transform 0.25s ease;
+      white-space: nowrap;
+    }
+
+    #yesBtn {
+      background: #ff4f8b;
+      color: white;
+      z-index: 2;
+    }
+
+    #noBtn {
+      background: white;
+      color: #ff4f8b;
+      border: 2px solid #ff4f8b;
+      top: 50px;
+      z-index: 1;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
-<body style="background:#ffc0cb; font-family: Arial; text-align:center;">
-  <h1>אם אתה רואה את זה – האתר עובד 🎉</h1>
-  <p>זה רק דף בדיקה בסיסי.</p>
+<body>
+
+<div class="screen" id="questionScreen">
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXl2eDQ5MG16ZXY0NGV1YjM3bmoweGllbXZkOWUwYWRjdm1ia3VqbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uv0VSp6Eqlu1nGvkZ0/giphy.gif">
+  <h1>נביז רוצה להיות איתי וולנטיין?</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">כן</button>
+    <button id="noBtn">לא</button>
+  </div>
+</div>
+
+<div class="screen hidden" id="finalScreen">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm1iNTU4NXNmaHhldzVjcWFmdTh1YzNkeDIwd2Z0bG80OGI0ZHV6bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wsJHi6a1JwoXC/giphy.gif">
+  <h1>ניפגש!! 💘</h1>
+</div>
+
+<script>
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const questionScreen = document.getElementById("questionScreen");
+  const finalScreen = document.getElementById("finalScreen");
+
+  let scale = 1;
+  let clicks = 0;
+  const texts = ["כדאי לך", "בטוח?", "אין דבר כזה!"];
+
+  noBtn.addEventListener("click", () => {
+    scale += 0.35;
+    yesBtn.style.transform = `translateX(-50%) scale(${scale})`;
+
+    if (clicks < texts.length) {
+      noBtn.textContent = texts[clicks];
+    }
+
+    if (scale >= 2.4) {
+      noBtn.style.display = "none";
+    }
+
+    clicks++;
+  });
+
+  yesBtn.addEventListener("click", () => {
+    questionScreen.classList.add("hidden");
+    finalScreen.classList.remove("hidden");
+  });
+</script>
+
 </body>
 </html>
