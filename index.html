@@ -152,37 +152,53 @@
   const questionScreen = document.getElementById("questionScreen");
   const finalScreen = document.getElementById("finalScreen");
 
-  let scale = 1;
   let clicks = 0;
-  let moveDown = 0; // 🔽 כמה הכפתור ירד
+  let crazyMode = false;
 
-  // 3 הטקסטים הקודמים + עוד שניים: "די ילדה", "שבי שבי"
-  const texts = ["כדאי לך", "בטוח?", "אין דבר כזה!", "די ילדה", "שבי שבי"];
+  function moveNoButton() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
-  noBtn.addEventListener("click", () => {
-    // כל לחיצה – כפתור ה"כן" גדל ומתחיל לכסות את כפתור ה"לא"
-    scale += 0.60;
-    moveDown += 3; // כל לחיצה יורד עוד קצת (אפשר לשחק עם המספר)
-    yesBtn.style.transform = `scale(${scale}) translateY(${moveDown}px)`;
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
 
-    // החלפת טקסטים לפי סדר
-    if (clicks < texts.length) {
-      noBtn.textContent = texts[clicks];
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+
+  function activateCrazyMode() {
+    if (!crazyMode) {
+      crazyMode = true;
+
+      // מתחיל להזיז את הכפתור כל הזמן לבד
+      setInterval(() => {
+        moveNoButton();
+      }, 500);
     }
+  }
 
-    // אחרי כל הטקסטים – הכפתור שמייצג "לא" נעלם
-    if (clicks + 1 >= texts.length) {
-      noBtn.style.display = "none";
-    }
-
+  function handleNoClick() {
     clicks++;
-  });
+
+    moveNoButton();
+
+    // אחרי 5 ניסיונות – הכפתור מתחיל להשתגע לבד
+    if (clicks >= 5) {
+      activateCrazyMode();
+    }
+  }
+
+  // התאמה גם למחשב וגם לטלפון
+  noBtn.addEventListener("click", handleNoClick);
+  noBtn.addEventListener("touchstart", handleNoClick);
 
   yesBtn.addEventListener("click", () => {
     questionScreen.classList.add("hidden");
     finalScreen.classList.remove("hidden");
   });
 </script>
+
 
 </body>
 </html>
